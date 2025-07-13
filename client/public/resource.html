@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Resource Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Resource Hub 📚</h2>
+
+  <div>
+    <input type="text" id="resTitle" placeholder="Title">
+    <input type="text" id="resContent" placeholder="Content or video URL">
+    <input type="text" id="resCategory" placeholder="Category (e.g., stress)">
+    <select id="resType">
+      <option value="article">Article</option>
+      <option value="video">Video</option>
+    </select>
+    <button onclick="addResource()">Add Resource</button>
+  </div>
+
+  <h3>All Resources</h3>
+  <div id="resourceList"></div>
+
+  <script src="script/resource.js"></script>
+</body>
+</html>

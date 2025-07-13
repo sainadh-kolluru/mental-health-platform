@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mood Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>Mood Tracker 😊</h2>
+
+  <p>Select your current mood:</p>
+  <select id="moodSelect">
+    <option value="1">😢 Very Sad</option>
+    <option value="2">😔 Sad</option>
+    <option value="3">😐 Neutral</option>
+    <option value="4">🙂 Happy</option>
+    <option value="5">😄 Very Happy</option>
+  </select>
+  <br><br>
+  <button onclick="submitMood()">Track Mood</button>
+
+  <hr>
+  <h3>Your Mood History</h3>
+  <ul id="moodHistory"></ul>
+
+  <script src="script/mood.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Peer Support Forum</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Peer Support Forum 💬</h2>
+
+  <div>
+    <input type="text" id="topicTitle" placeholder="Topic title">
+    <input type="text" id="topicDesc" placeholder="Short description">
+    <button onclick="createTopic()">Create Topic</button>
+  </div>
+
+  <h3>Available Topics</h3>
+  <ul id="topicList"></ul>
+
+  <hr>
+  <div id="postsSection" style="display:none;">
+    <h3 id="topicHeader"></h3>
+    <textarea id="postMsg" placeholder="Type your reply"></textarea><br>
+    <button onclick="postMessage()">Post</button>
+    <ul id="postList"></ul>
+  </div>
+
+  <script src="script/forum.js"></script>
+</body>
+</html>
