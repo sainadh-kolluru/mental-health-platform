@@ -1,17 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Register - Mental Health Platform</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register</title>
 </head>
 <body>
-  <h2>Register</h2>
-  <form action="https://mental-health-backend.onrender.com/api/register" method="POST">
-    <input type="text" name="name" placeholder="Full Name" required />
-    <input type="email" name="email" placeholder="Email" required />
-    <input type="password" name="password" placeholder="Password" required />
+  <h1>Register</h1>
+  <form id="registerForm">
+    <input type="text" placeholder="Name" name="name" required /><br/>
+    <input type="email" placeholder="Email" name="email" required /><br/>
+    <input type="password" placeholder="Password" name="password" required /><br/>
     <button type="submit">Register</button>
   </form>
-  <p><a href="index.html">Back to Home</a></p>
+
+  <script>
+    const form = document.getElementById('registerForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = form.name.value;
+      const email = form.email.value;
+      const password = form.password.value;
+
+      const res = await fetch('https://mental-health-platform-u3lf.onrender.com/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password })
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert('Registered successfully');
+        window.location.href = 'login.html';
+      } else {
+        alert(data.message || 'Registration failed');
+      }
+    });
+  </script>
 </body>
 </html>
