@@ -9,8 +9,10 @@ const app = express();
 // MIDDLEWARE
 app.use(cors());
 app.use(express.json());
+app.use('/api/feelings', require('./routes/feelings'));
 
-// Serve static files from client/public
+
+// STATIC FILES
 app.use(express.static(path.join(__dirname, '..', 'client', 'public')));
 
 // ROUTES
@@ -19,9 +21,14 @@ app.use('/api/resource', require('./routes/resource'));
 app.use('/api/message', require('./routes/message'));
 app.use('/api/admin', require('./routes/admin'));
 
-// (Optional) fallback to open the forum page
+// ✅ Main homepage route — this should come BEFORE the wildcard route
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'client', 'public', 'forum.html'));
+});
+
+// ✅ Wildcard fallback — MUST be the last route
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'public', 'index.html'));
 });
 
 // MONGODB CONNECTION
