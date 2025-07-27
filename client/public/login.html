@@ -22,21 +22,22 @@
       try {
         const res = await fetch('https://mental-health-platform-u3lf.onrender.com/api/login', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({ email, password })
         });
 
+        const text = await res.text(); // debug
+        console.log('RAW login response:', text);
+
         if (!res.ok) {
-          const errorData = await res.json();
-          throw new Error(errorData.message || "Login failed");
+          throw new Error(JSON.parse(text).message || 'Login failed');
         }
 
         alert('Login successful');
         window.location.href = 'dashboard.html';
-
       } catch (error) {
         console.error(error);
-        alert(error.message || 'Server error during login');
+        alert('Error: ' + error.message);
       }
     });
   </script>

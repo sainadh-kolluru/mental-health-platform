@@ -24,21 +24,22 @@
       try {
         const res = await fetch('https://mental-health-platform-u3lf.onrender.com/api/register', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({ name, email, password })
         });
 
+        const text = await res.text(); // debug
+        console.log('RAW register response:', text);
+
         if (!res.ok) {
-          const errorData = await res.json();
-          throw new Error(errorData.message || "Registration failed");
+          throw new Error(JSON.parse(text).message || 'Registration failed');
         }
 
         alert('Registered successfully');
         window.location.href = 'login.html';
-
       } catch (error) {
         console.error(error);
-        alert(error.message || 'Server error during registration');
+        alert('Error: ' + error.message);
       }
     });
   </script>
