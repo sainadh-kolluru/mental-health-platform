@@ -26,17 +26,17 @@
           body: JSON.stringify({ email, password })
         });
 
-        const data = await res.json();
-
-        if (res.ok) {
-          alert('Login successful');
-          window.location.href = 'dashboard.html';
-        } else {
-          alert(data.message || 'Login failed');
+        if (!res.ok) {
+          const errorData = await res.json();
+          throw new Error(errorData.message || "Login failed");
         }
+
+        alert('Login successful');
+        window.location.href = 'dashboard.html';
+
       } catch (error) {
         console.error(error);
-        alert('Server error during login');
+        alert(error.message || 'Server error during login');
       }
     });
   </script>

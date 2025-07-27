@@ -28,17 +28,17 @@
           body: JSON.stringify({ name, email, password })
         });
 
-        const data = await res.json();
-
-        if (res.ok) {
-          alert('Registered successfully');
-          window.location.href = 'login.html';
-        } else {
-          alert(data.message || 'Registration failed');
+        if (!res.ok) {
+          const errorData = await res.json();
+          throw new Error(errorData.message || "Registration failed");
         }
+
+        alert('Registered successfully');
+        window.location.href = 'login.html';
+
       } catch (error) {
         console.error(error);
-        alert('Server error during registration');
+        alert(error.message || 'Server error during registration');
       }
     });
   </script>
